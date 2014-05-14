@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="DimmedOverlay.DimmedOverlayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:loc="clr-namespace:DimmedOverlay"
+             mc:Ignorable="d" Opacity="0.0" BorderThickness="2"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="loc:DimmedOverlayControl">
+            <Style.Triggers>
+                <Trigger Property="Dimmed" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="0.0" To="1.0" Duration="0:0:0.8"/>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="{x:Null}">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="{x:Static Visibility.Visible}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="1.0" To="0.0" Duration="0:0:0.8"/>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="{x:Null}">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.8" Value="{x:Static Visibility.Hidden}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+            <Rectangle Fill="#50000000"></Rectangle>
+    </Grid>
+</UserControl>

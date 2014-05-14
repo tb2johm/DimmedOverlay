@@ -1,0 +1,27 @@
+﻿<Window x:Class="DimmedOverlay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:DimmedOverlay"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid Margin="80,80,80,40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="133*"/>
+                <RowDefinition Height="27*"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0">
+                <ListBox.Items>
+                    <TextBlock>This</TextBlock>
+                    <TextBlock>is</TextBlock>
+                    <TextBlock>the</TextBlock>
+                    <TextBlock>worst</TextBlock>
+                    <TextBlock>list</TextBlock>
+                    <TextBlock>context</TextBlock>
+                    <TextBlock>ever!</TextBlock>
+                </ListBox.Items>
+            </ListBox>
+            <loc:DimmedOverlayControl x:Name="DO" Grid.Row="0" Dimmed="{Binding IsChecked, ElementName=ToggleBtn}" />
+            <ToggleButton x:Name="ToggleBtn" Content="Visible" Margin="259,7,0,0" Grid.Row="1" IsChecked="False" />
+        </Grid>
+    </Grid>
+</Window>
